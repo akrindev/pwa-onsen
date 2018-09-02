@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="/lib/onsenui/css/onsenui.css">
+  <link rel="stylesheet" href="/lib/onsenui/css/onsen-css-components.min.css">
+  <script src="/lib/onsenui/js/onsenui.min.js"></script>
+  <script>
+  ons.platform.select('ios');
+  </script>
+</head>
+<body>
+  <ons-page>
+
+    <ons-toolbar>
+      <div class="center" animation="fade">Toram</div>
+    </ons-toolbar>
+
+    <ons-tabbar swipeable position="auto">
+      <ons-tab page="pages/home.html" icon="ion-home" label="home" badge="9"></ons-tab>
+        <ons-tab page="pages/tools.html" icon="ion-cube" label="tools" badge="9"></ons-tab>
+    </ons-tabbar>
+
+  </ons-page>
+
+  <script>
+  var myNavigator = document.getElementById('myNavigator');
+myNavigator.pushPage('page2.html');
+
+  function gallery(){
+    ons.notification.toast("You clicked Gallery", { timeout: 3000 });
+  }
+  </script>
+</body>
+</html>
