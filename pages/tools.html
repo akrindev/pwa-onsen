@@ -1,8 +1,14 @@
+<ons-navigator swipeable id="navigator">
+
 <ons-page>
+
+    <ons-toolbar>
+      <div class="center" animation="fade">Toram Tools</div>
+    </ons-toolbar>
 
   <ons-list>
     <ons-list-header>  Tools  </ons-list-header>
-    <ons-list-item>Fill stats formula</ons-list-item>
+    <ons-list-item tappable onclick="fillFormula()">Fill stats formula</ons-list-item>
     <ons-list-item>Fill stats Calculator</ons-list-item>
     <ons-list-item>Exp Calculator</ons-list-item>
   </ons-list>
@@ -16,4 +22,8 @@
     <div class="center">Gallery</div>
     </ons-list-item>
   </ons-list>
+
+  <div id="root"></div>
+
 </ons-page>
+    </ons-navigator>
