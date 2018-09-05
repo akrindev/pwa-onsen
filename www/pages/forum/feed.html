@@ -1,0 +1,42 @@
+
+<ons-page>
+  <ons-toolbar>
+  <div class="left">
+    <ons-back-button>Back</ons-back-button>
+    </div>
+    <div class="center">
+      Diskusi Toram
+    </div>
+</ons-toolbar>
+
+  <div class="content">
+  <ons-search-input placeholder="Cari diskusi" style="width:100%;margin-top:10px"></ons-search-input>
+
+  <div id="diskusi-list">
+    <h2>Diskusi Terakhir</h2>
+
+
+    <div id="loader-feed">
+    <ons-progress-bar indeterminate></ons-progress-bar>
+    </div>
+    </div>
+
+    </div>
+<script>
+
+  axios.get('http://localhost:8000/api/forum')
+  .then((res) => {
+   let feed = document.getElementById("diskusi-list");
+   let loader = document.getElementById('loader-feed');
+
+    loader.remove();
+  	res.data.map(item => {
+    	feed.innerHTML += `
+    <div class="card">
+    <div class="title">${item.judul}</div>
+    <div class="content">${item.user.name}</div>
+    </div>`
+    });
+  }).catch((err) => ons.notification.alert(err));
+ </script>
+</ons-page>

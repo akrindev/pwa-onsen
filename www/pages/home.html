@@ -1,17 +1,43 @@
+<ons-navigator id="navigator">
 <ons-page>
 
     <ons-toolbar>
       <div class="center" animation="fade">Toram Database</div>
     </ons-toolbar>
 
-<div class="center" style="padding:10px">
+<div class="center">
 
-  <h1>Welcome!</h1>
+<div class="center" style="padding:10px;font-weight:bold">
+  <marquee style="center">Toram Online Indonesia </marquee></div>
   <br>
   <img src="res/potum.png" alt="toram-id.info" style="max-width:60%;display:block;margin:0 auto;min-height:20%" class="center">
 
-  <p>Jelajahi database toram dalam bahasa indonesia</p>
+  <ons-card>
+    <div class="title" tappable onClick="feedForum()">
+    Forum Q &amp; A
+    </div>
+    <div class="content">Tanya jawab / sharing seputar toram</div>
+  </ons-card>
+
+  <ons-card>
+    <div class="title">Peta</div>
+    <div class="content">Map toram</div>
+  </ons-card>
+
+  <ons-card>
+    <div class="title">Tools</div>
+    <div class="content">Kumpulan tools toram</div>
+  </ons-card>
 
   </div>
 
+
+<script>
+ function feedForum(){
+ 	let nav = document.getElementById('navigator');
+
+   	nav.pushPage('pages/forum/feed.html', { title: 'nani '});
+ }
+</script>
 </ons-page>
+  </ons-navigator>
