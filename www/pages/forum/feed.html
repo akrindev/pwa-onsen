@@ -1,42 +1,73 @@
-
 <ons-page>
+  <link rel="stylesheet" href="src/dashboard.css">
   <ons-toolbar>
-  <div class="left">
-    <ons-back-button>Back</ons-back-button>
+    <div class="left">
+      <ons-back-button>Back</ons-back-button>
     </div>
     <div class="center">
       Diskusi Toram
     </div>
-</ons-toolbar>
+  </ons-toolbar>
 
   <div class="content">
-  <ons-search-input placeholder="Cari diskusi" style="width:100%;margin-top:10px"></ons-search-input>
+    <ons-search-input placeholder="Cari diskusi" style="width:90%;margin-top:10px;margin-left:10px;"></ons-search-input>
 
-  <div id="diskusi-list">
-    <h2>Diskusi Terakhir</h2>
+    <div style="margin-right:10px">
+      <h2 style="margin-left:10px">Diskusi Terakhir</h2>
+
+      <div class="card" style="padding:0">
+        <div style="padding:0;margin:0">
+          <table class="table card-table table-striped" id="diskusi-list">
+
+          </table>
+        </div>
+
+      </div>
 
 
-    <div id="loader-feed">
-    <ons-progress-bar indeterminate></ons-progress-bar>
+      <div id="loader-feed">
+        <ons-progress-bar indeterminate></ons-progress-bar>
+      </div>
     </div>
-    </div>
 
-    </div>
-<script>
+  </div>
+  <script>
+    axios.get(Toram.baseURL+'/api/forum')
+    .then((res) => {
+     let feed = document.getElementById("diskusi-list");
+     let loader = document.getElementById('loader-feed');
 
-  axios.get('http://localhost:8000/api/forum')
-  .then((res) => {
-   let feed = document.getElementById("diskusi-list");
-   let loader = document.getElementById('loader-feed');
+      loader.remove();
+    	res.data.map(item => {
+      	feed.innerHTML += `
+                        <tr>
+                          <td width=85% class="px-2 py-2">
+                            <img src="https://graph.facebook.com/${item.user.provider_id}/picture?type=normal" class="avatar float-left mr-4 lazyload">
 
-    loader.remove();
-  	res.data.map(item => {
-    	feed.innerHTML += `
-    <div class="card">
-    <div class="title">${item.judul}</div>
-    <div class="content">${item.user.name}</div>
-    </div>`
-    });
-  }).catch((err) => ons.notification.alert(err));
- </script>
+                            <a href="/forum/${item.slug}"  onClick="event.preventDefault();baca(${item.id})"><b> ${item.judul} </b></a> <br>
+                          <small class="text-muted">
+
+                          <i class="fe fe-user"></i> ${item.user.name} &nbsp; <i class="fe fe-clock"></i> ${item.created}
+
+        &nbsp; <i class="fe fe-eye"></i> ${item.views}
+                            <br />
+
+                          <small class="tag small">  ${item.tags}</small>
+                            </small></td>
+                          <td class="text-right">
+                            <b>${item.comment_count}</b><br>
+                            <small class="text-muted">replies</small></td>
+                        </tr>`
+      });
+    }).catch((err) => ons.notification.alert(err));
+
+  let baca = i => {
+   	let nav = document.getElementById('navigator');
+
+    window.fn = {}
+    window.fn.data = i
+
+     	nav.pushPage('pages/forum/baca.html',{ data:{id:i}});
+  }
+  </script>
 </ons-page>

@@ -1,0 +1,45 @@
+<ons-page>
+<ons-toolbar>
+  <div class="left">
+  <ons-back-button>back</ons-back-button>
+  </div>
+  <div class="center">Baca diskusi</div>
+</ons-toolbar>
+
+<div id="content" style="margin-right:10px">
+  <div class="text-center mt-5" id="baca-load">
+  <ons-progress-circular indeterminate></ons-progress-circular>
+  </div>
+</div>
+
+<script>
+axios.get(Toram.baseURL+'/api/forum/'+window.fn.data)
+  .then((res) => {
+  window.fn.data = null;
+  document.getElementById('baca-load').remove();
+
+  let item = res.data;
+  let c = document.getElementById('content');
+    	c.innerHTML = `
+   <div class="mb-3 ml-1">
+     <h4 class="mt0 mb-0"> ${item.judul} </h4>
+   </div>
+        <div class="card p-0">
+          <div class="card-status bg-${item.color}"></div>
+          <div class="card-body text-wrap p-3">
+     <img src="https://graph.facebook.com/${item.user.provider_id}/picture?type=normal" class="avatar avatar-md float-left mr-4"><a href="#"> <b> ${item.user.name} </b></a><br>
+            <small class="text-muted"> ${item.created}  &nbsp; <i class="fe fe-eye"></i> ${item.views} &nbsp; <i class="fe fe-message-square"></i> ${item.comment.length} </small>
+
+            <hr class="my-2">
+            <div class="my-1">
+              <a class="tag" href="#"> ${item.tags} </a>
+            </div>
+            <div class="body-text" style="font-size:13px;font-weight:400">
+            ${item.body}
+            </div>
+          </div>
+        </div>`;
+
+  }).catch(err => ons.notification.alert(err));
+</script>
+</ons-page>
