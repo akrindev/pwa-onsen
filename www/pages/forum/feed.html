@@ -1,5 +1,5 @@
 <ons-page>
-  <link rel="stylesheet" href="src/dashboard.css">
+  <link rel="stylesheet" href="src/css/dashboard.css">
   <ons-toolbar>
     <div class="left">
       <ons-back-button>Back</ons-back-button>
@@ -17,7 +17,7 @@
 
       <div class="card" style="padding:0">
         <div style="padding:0;margin:0">
-          <table class="table card-table table-striped" id="diskusi-list">
+          <table class="table card-table table-striped" id="diskusi-list" style="font-size:13px;font-weight:400">
 
           </table>
         </div>
@@ -25,8 +25,8 @@
       </div>
 
 
-      <div id="loader-feed">
-        <ons-progress-bar indeterminate></ons-progress-bar>
+      <div id="loader-feed" class="text-center">
+        <ons-progress-circular indeterminate></ons-progress-circular>
       </div>
     </div>
 
@@ -51,7 +51,6 @@
 
         &nbsp; <i class="fe fe-eye"></i> ${item.views}
                             <br />
-
                           <small class="tag small">  ${item.tags}</small>
                             </small></td>
                           <td class="text-right">

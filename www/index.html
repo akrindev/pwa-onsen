@@ -1,49 +1,50 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta name="HandheldFriendly" content="True">
-    <meta name="MobileOptimized" content="320"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="MobileOptimized" content="320" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="lib/onsenui/css/onsenui.css">
   <link rel="stylesheet" href="lib/onsenui/css/onsen-css-components.min.css">
   <script src="lib/onsenui/js/onsenui.min.js"></script>
-  <script src="src/axios.min.js"></script>
-  <script src="src/config.js"></script>
+  <script src="src/js/axios.min.js"></script>
+  <script src="src/js/config.js"></script>
   <script>
-  //ons.platform.select('ios');
-
+    //ons.platform.select('ios');
   </script>
 </head>
+
 <body>
   <ons-navigator id="navigator">
-  <ons-page>
+    <ons-page>
 
-  </ons-page>
+    </ons-page>
 
     <ons-tabbar swipeable position="">
       <ons-tab page="pages/home.html" icon="ion-home" label="home"></ons-tab>
-        <ons-tab page="pages/cari.html" icon="ion-search" label="cari"></ons-tab>
-        <ons-tab page="pages/tools.html" icon="ion-cube" label="tools"></ons-tab>
+      <ons-tab page="pages/cari.html" icon="ion-search" label="cari"></ons-tab>
+      <ons-tab page="pages/tools.html" icon="ion-cube" label="tools"></ons-tab>
     </ons-tabbar>
-</ons-navigator>
+  </ons-navigator>
 
   <script src="cordova.js"></script>
-<!--
+  <!--
   <script type='text/javascript'
         src='http://getfirebug.com/releases/lite/1.2/firebug-lite-compressed.js'></script> -->
 
   <script>
+    function gallery(){
+      ons.notification.toast("You clicked Gallery", { timeout: 3000 });
+    }
 
-  function gallery(){
-    ons.notification.toast("You clicked Gallery", { timeout: 3000 });
-  }
+    function fillFormula() {
+      var root = document.querySelector('#navigator');
+      var toolbar = document.querySelector("ons-toolbar");
 
-  function fillFormula() {
-    var root = document.querySelector('#navigator');
-    var toolbar = document.querySelector("ons-toolbar");
-
-    root.pushPage('pages/tools/fillstats.html', { title: 'nani' });
-  }
+      root.pushPage('pages/tools/fillstats.html', { title: 'nani' });
+    }
   </script>
 </body>
+
 </html>
