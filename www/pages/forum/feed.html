@@ -10,6 +10,10 @@
   </ons-toolbar>
 
   <div class="content">
+
+    <ons-pull-hook id="pull-hook">
+      Tarik kebawah untuk refresh
+    </ons-pull-hook>
     <ons-search-input placeholder="Cari diskusi" style="width:90%;margin-top:10px;margin-left:10px;"></ons-search-input>
 
     <div style="margin-right:10px">
@@ -31,49 +35,4 @@
     </div>
 
   </div>
-  <script>
-    axios.get(Toram.baseURL+'/api/forum')
-    .then((res) => {
-     let feed = document.getElementById("diskusi-list");
-     let loader = document.getElementById('loader-feed');
-
-      loader.remove();
-    	res.data.map(item => {
-          	let tags = '';
-
-            let pisah = item.tags.split(',');
-          	pisah.map(thus => {
-              tags += `<small class="tag small ml-1">${thus}</small>`;
-            });
-
-      		feed.innerHTML += `
-                        <tr>
-                          <td width=85% class="px-2 py-2">
-                            <img src="https://graph.facebook.com/${item.user.provider_id}/picture?type=normal" class="avatar float-left mr-4 lazyload">
-
-                            <a href="/forum/${item.slug}"  onClick="event.preventDefault();baca(${item.id})"><b> ${item.judul} </b></a> <br>
-                          <small class="text-muted">
-
-                          <i class="fe fe-user"></i> ${item.user.name} &nbsp; <i class="fe fe-clock"></i> ${item.created}
-
-        &nbsp; <i class="fe fe-eye"></i> ${item.views}
-                            <br />`+tags+`
-
-                            </small></td>
-                          <td class="text-right">
-                            <b>${item.comment_count}</b><br>
-                            <small class="text-muted">replies</small></td>
-                        </tr>`
-      });
-    }).catch((err) => ons.notification.alert(err));
-
-  let baca = i => {
-   	let nav = document.getElementById('navigator');
-
-    window.fn = {}
-    window.fn.data = i
-
-     	nav.pushPage('pages/forum/baca.html',{ data:{id:i}});
-  }
-  </script>
 </ons-page>
