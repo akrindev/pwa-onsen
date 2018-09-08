@@ -28,7 +28,7 @@
               <div class="card-status bg-${item.color}"></div>
               <div class="card-body text-wrap p-3">
          <img src="https://graph.facebook.com/${item.user.provider_id}/picture?type=normal" class="avatar avatar-md float-left mr-4"><a href="#"> <b> ${item.user.name} </b></a><br>
-                <small class="text-muted"> ${item.created}  &nbsp; <i class="fe fe-eye"></i> ${item.views} &nbsp; <i class="fe fe-message-square"></i> ${item.comment.length} </small>
+                <small class="text-muted"> ${item.created}  &nbsp; <i class="fe fe-eye"></i> ${item.views}  </small>
 
                 <hr class="my-2">
                 <div class="my-1">
@@ -41,6 +41,24 @@
             </div>`;
 
       item.comment.map(com => {
+        let reply = com.get_reply;
+
+        let buffer = '';
+
+        reply.map(r => {
+        	buffer += `
+
+<hr class="my-1">
+          <div id="#reply${r.id}" class="p-2">
+            <img src="https://graph.facebook.com/${r.user.provider_id}/picture?type=normal" class="avatar avatar-md float-left mr-4 lazyload">
+            <b><a href="#" data-author="${r.user.name}">  ${r.user.name}</a> </b> <small class="text-muted"> • (${r.created})</small><br>
+            <div class="media-body">
+            ${r.body}
+            </div>
+          </div>
+			`;
+        });
+
       	c.innerHTML += `
 
 		<div class="card p-0">
@@ -53,7 +71,9 @@ user.name}</a> </b> <br>
             <div class="body-text">
             ${com.body}
 
+			`+buffer+`
             </div>
+
           </div>
    		</div>
 		`;
