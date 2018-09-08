@@ -39,7 +39,14 @@
 
       loader.remove();
     	res.data.map(item => {
-      	feed.innerHTML += `
+          	let tags = '';
+
+            let pisah = item.tags.split(',');
+          	pisah.map(thus => {
+              tags += `<small class="tag small ml-1">${thus}</small>`;
+            });
+
+      		feed.innerHTML += `
                         <tr>
                           <td width=85% class="px-2 py-2">
                             <img src="https://graph.facebook.com/${item.user.provider_id}/picture?type=normal" class="avatar float-left mr-4 lazyload">
@@ -50,8 +57,8 @@
                           <i class="fe fe-user"></i> ${item.user.name} &nbsp; <i class="fe fe-clock"></i> ${item.created}
 
         &nbsp; <i class="fe fe-eye"></i> ${item.views}
-                            <br />
-                          <small class="tag small">  ${item.tags}</small>
+                            <br />`+tags+`
+
                             </small></td>
                           <td class="text-right">
                             <b>${item.comment_count}</b><br>
