@@ -7,14 +7,51 @@
       <div class="center" animation="fade">Toram Fillstats</div>
     </ons-toolbar>
 
-  <div class="center" style="padding:10px">
-
-  <h1>Fill stats Formula</h1>
-
+  <div class="center">
     <ons-list>
-      <ons-list-header>Weapon +13</ons-list-header>
-
+      <ons-list-header>Zirah</ons-list-header>
+      <ons-list-item tappable onClick="showFill(1,13)">Zirah +13</ons-list-item>
+      <ons-list-item tappable onClick="showFill(1,14)">Zirah +14</ons-list-item>
+      <ons-list-item tappable onClick="showFill(1,15)">Zirah +15</ons-list-item>
+      <ons-list-item tappable onClick="showFill(1,16)">Zirah +16</ons-list-item>
     </ons-list>
-
+<br><br>
+    <ons-list>
+      <ons-list-header>Weapon</ons-list-header>
+      <ons-list-item tappable onClick="showFill(2,13)">Weapon +13</ons-list-item>
+      <ons-list-item tappable onClick="showFill(2,14)">Weapon +14</ons-list-item>
+      <ons-list-item tappable onClick="showFill(2,15)">Weapon +15</ons-list-item>
+      <ons-list-item tappable onClick="showFill(2,16)">Weapon +16</ons-list-item>
+    </ons-list>
   </div>
+
+<script>
+const showFill = (type,plus) => {
+  let nav = document.getElementById('navigator');
+
+  nav.pushPage('pages/tools/fillshow.html')
+  .then(() => {
+    let loader = document.getElementById("loading");
+
+    axios.get(Toram.baseURL+'/api/fill/'+type+'/'+plus)
+    .then((res) => {
+
+      loader.remove();
+      let listFill = document.getElementById('fill-list');
+
+      res.data.map(item => {
+        listFill.innerHTML += `
+			<ons-list-item expandable>
+				${item.stats}
+
+				<div class="expandable-content" style="font-size:13px;font-weight:400;color:#378ed8">
+					${item.steps}
+  				</div>
+  			</ons-list-item>
+		`;
+      });
+    }).catch(err => ons.notification.alert(err));
+  });
+ }
+</script>
 </ons-page>

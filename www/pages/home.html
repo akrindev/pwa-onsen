@@ -25,7 +25,7 @@
   </ons-card>
 
   <ons-card>
-    <div class="title">Tools</div>
+    <div class="title" onClick="showTools()">Tools</div>
     <div class="content">Kumpulan tools toram</div>
   </ons-card>
 
@@ -33,6 +33,12 @@
 
 
 <script>
+ function showTools(){
+ 	let nav = document.getElementById('navigator');
+
+   	nav.pushPage('pages/tools.html')
+ }
+
  function feedForum(){
  	let nav = document.getElementById('navigator');
 
