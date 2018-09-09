@@ -1,5 +1,5 @@
 // toram-id.info
 
 const Toram = {
-  baseURL: 'http://localhost:8000'
+  baseURL: 'https://toram-id.info'
 }
