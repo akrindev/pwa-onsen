@@ -1,0 +1,72 @@
+<ons-page>
+<ons-toolbar>
+ <div class="left">
+   <ons-back-button>back</ons-back-button>
+ </div>
+  <div class="center">
+    Fill stats Calculator
+  </div>
+ </ons-toolbar>
+  <link rel="stylesheet" href="src/css/dashboard.css">
+<div class="card p-0">
+          <div class="card-header">
+            <h3 class="card-title"> Resep status </h3>
+          </div>
+
+          <div class="card-body p-3" style="font-size:14px;font-weight:400">
+            <div class="form-group">
+               <select class="form-control" id="weap_arm" onchange="update_config('weap_arm')">
+                <option value='w'>Weapon</option>
+                <option value='a'>Zirah</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+            	<div id="stat_menu" class="row gutter-xs p-2">
+
+            	</div>
+            </div>
+
+            <div class="form-group">
+              <button class="btn btn-outline-primary" onclick="get_results()">Lihat!</button>&nbsp;&nbsp;&nbsp;<button class="btn btn-outline-secondary" onclick='prompt_potential()'>Set Potensi</button>
+            </div>
+          </div>
+        </div>
+
+    <div class="card p-0">
+          <div class="card-header">
+            <h3 class="card-title"> Step </h3>
+          </div>
+
+          <div class=" o-auto" style="font-size:14px;font-weight:400;height: 26rem">
+            <div id="details">
+              <p style="padding:10px">
+              Step akan tampil disini</p>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="card p-0">
+          <div class="card-header">
+            <h3 class="card-title"> Hasil </h3>
+          </div>
+
+          <div class="o-auto" style="font-size:14px;font-weight:40p;height: 26rem">
+            <div id="results">
+              <p style="padding:10px">
+            Hasil akan tampil disini</p>
+            </div>
+          </div>
+        </div>
+
+      	<div class="card p-0">
+          <div class="card-header">
+            <h3 class="card-title"> Banyak di gunakan </h3>
+          </div>
+          <div class="card-body">
+            <div id="stat_formulas"></div>
+          </div>
+        </div>
+
+</ons-page>
