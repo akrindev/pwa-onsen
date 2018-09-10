@@ -20,7 +20,7 @@
   </ons-card>
 
   <ons-card>
-    <div class="title">Peta</div>
+    <div class="title" onclick="showMap()">Peta</div>
     <div class="content">Map toram</div>
   </ons-card>
 
@@ -33,15 +33,35 @@
 
 
 <script>
- function showTools(){
- 	let nav = document.getElementById('navigator');
+ let nav = document.getElementById('navigator');
 
+ function showMap(){
+   nav.pushPage('pages/mons/map.html')
+   .then(() => {
+   	  axios.get(Toram.baseURL+'/api/map')
+      .then(res => {
+        let listen = document.getElementById("listen");
+        let loader = document.getElementById("loader");
+
+        loader.remove();
+
+        let maps = res.data;
+
+        maps.map(item => {
+        	listen.innerHTML += `
+				<ons-list-item tappable>${item.name}</ons-list-item>
+			`;
+        });
+
+      }).catch(err => ons.notification.alert(err));
+   });
+ }
+
+ function showTools(){
    	nav.pushPage('pages/tools.html')
  }
 
  function feedForum(){
- 	let nav = document.getElementById('navigator');
-
    	nav.pushPage('pages/forum/feed.html')
     .then(() => loadFeed());
  }

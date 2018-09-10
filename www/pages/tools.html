@@ -12,7 +12,7 @@
     <ons-list-header>  Tools  </ons-list-header>
     <ons-list-item tappable onclick="fillFormula()">Fill stats formula</ons-list-item>
     <ons-list-item tappable onclick="fillCalculator()">Fill stats Calculator</ons-list-item>
-    <ons-list-item>Exp Calculator</ons-list-item>
+    <ons-list-item tappable onclick="exp()">Exp Calculator</ons-list-item>
   </ons-list>
 
   <ons-list>
@@ -25,15 +25,17 @@
     </ons-list-item>
   </ons-list>
 <script>
+  var root = document.querySelector('#navigator');
+
+  function exp(){
+    root.pushPage('pages/tools/exp.html');
+  }
 
     function fillFormula() {
-      var root = document.querySelector('#navigator');
-
       root.pushPage('pages/tools/fillstats.html', { title: 'nani' });
     }
 
   function fillCalculator() {
-      var root = document.querySelector('#navigator');
       root.pushPage('pages/tools/fillcalc.html')
     	.then(() => build_menu());
   }

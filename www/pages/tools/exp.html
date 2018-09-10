@@ -1,0 +1,80 @@
+<ons-page>
+  <ons-toolbar>
+    <div class="left">
+      <ons-back-button>back</ons-back-button>
+    </div>
+    <div class="center">Exp calculator</div>
+  </ons-toolbar>
+  <link rel="stylesheet" href="src/css/dashboard.css">
+
+
+  <div class="card-body">
+    <div class="row">
+
+      <div class="h3 mb-5 col-12">Harga</div>
+
+      <div class="form-group form-group-sm col-md-4 col-xs-12">
+        <label>Nightmare Cystal (Kristal teror)</label>
+        <input type="number" id="nc" class="form-control" value="12500">
+        <small class="text-muted">Harga NC per stk</small>
+      </div>
+
+
+      <div class="form-group form-group-sm col-md-4 col-xs-12">
+        <label>Bitter Nut (Kacang Pahit)</label>
+        <input type="number" id="bnut" class="form-control" value=5000>
+        <small class="text-muted">Harga BNut perstk </small>
+      </div>
+
+
+      <div class="form-group form-group-sm col-md-4 col-xs-12">
+        <label>Nisel Wood (Kayu Nisel)</label>
+        <input type="number" id="nwood" class="form-control" value="2000">
+        <small class="text-muted">Harga NWood perstk</small>
+      </div>
+
+
+
+
+
+      <div class="h2 mb-5 col-12">Level</div>
+      <div class="form-group form-group-sm col-md-4 col-xs-6">
+        <label>Level Sekarang</label>
+        <input type="number" id="lvnow" class="form-control" value="1">
+      </div>
+
+      <div class="form-group form-group-sm col-md-4 col-xs-6">
+        <label>Level Persen (%)</label>
+        <input type="number" id="lvperc" class="form-control" value="1">
+      </div>
+
+      <div class="form-group form-group-sm col-md-4 col-xs-6">
+        <label>Target Level</label>
+        <input type="number" id="lvtarget" class="form-control" value="150">
+      </div>
+
+      <div class="col-md-4 mb-6 col-xs-6">
+        <label>Mulai hitung ? </label><br>
+        <button onClick="calc()" class="btn btn-primary">Kalkulasi</button>
+      </div>
+
+      <div class="col-md-12 col-xs-12">
+        <h2>Hasil Akhir</h2>
+        <b>Exp yang di butuhkan:</b> <span class="last_xp"></span><br /><br />
+        <b>Stock yang di butuhkan:</b>
+        <div class="container-fluid">
+          <b>NC: </b> <span class="last_nc"></span><br />
+          <b>Bnut: </b> <span class="last_bnut"></span><br />
+          <b>Nwood: </b> <span class="last_nwood"></span><br /><br /><br />
+        </div>
+
+        <b>Spina yang di butuhkan:</b>
+        <div class="container-fluid">
+          <b>NC: </b> <span class="spina_last_nc"></span><br />
+          <b>Bnut: </b> <span class="spina_last_bnut"></span><br />
+          <b>Nwood: </b> <span class="spina_last_nwood"></span><br />
+        </div>
+      </div>
+    </div>
+  </div>
+</ons-page>
