@@ -49,7 +49,7 @@
 
         maps.map(item => {
         	listen.innerHTML += `
-				<ons-list-item tappable>${item.name}</ons-list-item>
+				<ons-list-item tappable onclick="showMobs(${item.id})">${item.name}</ons-list-item>
 			`;
         });
 

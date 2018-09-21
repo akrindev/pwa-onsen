@@ -13,4 +13,45 @@
   <div id="loader" style="padding:20px;text-align:center">
     <ons-progress-circular indeterminate></ons-progress-circular>
   </div>
+
+  <script>
+  const showMobs = i => {
+  let nav = document.getElementById('navigator');
+    nav.pushPage('pages/mons/mons-map.html')
+    .then(() => {
+      axios.get(Toram.baseURL+'/api/map/'+i)
+      .then(res => {
+        let data = res.data;
+        let card = document.getElementById("card-mons");
+        let loading = document.getElementById("loading");
+
+        loading.remove();
+
+
+		data.map(item => {
+          let drop = '<br /><br /><b>Drop: </b><br />';
+          let gambar = ``;
+
+          if(item.picture){
+            gambar = `<img style="margin:10px;max-width:80%;max-width:50%;display:block" src="https://toram-id.info/${item.picture}"/>`;
+          }
+
+          item.drops.map(n => {
+              drop += `
+                  <div class="item" style="margin-top:10px;font-size:12px;font-weight:400"><img src="${Toram.baseURL+n.drop_type.url}" style="height:17px;width;17px;margin-right:5px"/> ${n.name}</div>
+              `;
+          });
+
+          card.innerHTML += `
+              <div class="card">
+                <b style="color:#5ea6eb">  ${item.name} (Lv ${item.level})</b>
+				`+gambar+drop+`
+              </div>
+          `;
+        });
+
+      }).catch(err => ons.notification.alert(err));
+    });
+  }
+  </script>
 </ons-page>
